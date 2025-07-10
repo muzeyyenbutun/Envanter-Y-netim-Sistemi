@@ -1,1 +1,2 @@
-# Envanter-Y-netim-Sistemi
+# Envanter-Yonetim-Sistemi
+
