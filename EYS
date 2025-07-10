@@ -1,0 +1,149 @@
+namespace StockManagementSystem
+{
+    class Product
+    {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int Stock { get; set; }
+
+        public Product(string name, decimal price, int stock)
+        {
+            Name = name;
+            Price = price;
+            Stock = stock;
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine($" Ürün: {Name},  Fiyat: {Price}TL,  Stok: {Stock} adet");
+        }
+    }
+
+    class Program
+    {
+        static List<Product> productList = new List<Product>();
+
+        static void Main(string[] args)
+        {
+            bool running = true;
+
+            while (running)
+            {
+                ShowMenu();
+
+                Console.Write("Seçiminiz: ");
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        AddProduct();
+                        break;
+                    case "2":
+                        ListProducts();
+                        break;
+                    case "3":
+                        UpdateStock();
+                        break;
+                    case "4":
+                        RemoveProduct();
+                        break;
+                    case "5":
+                        Console.WriteLine(" Programdan çıkılıyor...");
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine(" Geçersiz seçim. Lütfen tekrar deneyin.");
+                        break;
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        static void ShowMenu()
+        {
+            Console.WriteLine("===  STOK YÖNETİM SİSTEMİ ===");
+            Console.WriteLine("[1] Yeni Ürün Ekle");
+            Console.WriteLine("[2] Ürünleri Listele");
+            Console.WriteLine("[3] Stok Güncelle");
+            Console.WriteLine("[4] Ürün Sil");
+            Console.WriteLine("[5] Çıkış");
+        }
+
+        static void AddProduct()
+        {
+            Console.Write(" Ürün adı: ");
+            string name = Console.ReadLine();
+
+            Console.Write(" Fiyat: ");
+            decimal price = Convert.ToDecimal(Console.ReadLine());
+
+            Console.Write(" Stok adedi: ");
+            int stock = Convert.ToInt32(Console.ReadLine());
+
+            Product newProduct = new Product(name, price, stock);
+            productList.Add(newProduct);
+
+            Console.WriteLine(" Ürün başarıyla eklendi!");
+        }
+
+        static void ListProducts()
+        {
+            Console.WriteLine("===  Mevcut Ürünler ===");
+
+            if (productList.Count == 0)
+            {
+                Console.WriteLine(" Hiç ürün bulunmuyor.");
+                return;
+            }
+
+            for (int i = 0; i < productList.Count; i++)
+            {
+                Console.Write($"[{i + 1}] ");
+                productList[i].DisplayInfo();
+            }
+        }
+
+        static void UpdateStock()
+        {
+            ListProducts();
+
+            if (productList.Count == 0) return;
+
+            Console.Write(" Güncellemek istediğiniz ürün numarası: ");
+            int index = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            if (index < 0 || index >= productList.Count)
+            {
+                Console.WriteLine(" Geçersiz ürün seçimi.");
+                return;
+            }
+
+            Console.Write(" Yeni stok adedi: ");
+            int newStock = Convert.ToInt32(Console.ReadLine());
+
+            productList[index].Stock = newStock;
+            Console.WriteLine(" Stok başarıyla güncellendi!");
+        }
+
+        static void RemoveProduct()
+        {
+            ListProducts();
+
+            if (productList.Count == 0) return;
+
+            Console.Write(" Silmek istediğiniz ürün numarası: ");
+            int index = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            if (index < 0 || index >= productList.Count)
+            {
+                Console.WriteLine(" Geçersiz ürün seçimi.");
+                return;
+            }
+
+            productList.RemoveAt(index);
+            Console.WriteLine(" Ürün başarıyla silindi!");
+        }
+    }
+}
