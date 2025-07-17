@@ -21,3 +21,4 @@ This console-based C# application helps users manage product inventories efficie
 •	- Must include at least one control structure, one loop, and one method.
 •	- Program must handle incorrect input gracefully.
 
+<img width="1908" height="1021" alt="1" src="https://github.com/user-attachments/assets/cf1eadb4-ec01-478e-a533-4d2e36971bb9" />
