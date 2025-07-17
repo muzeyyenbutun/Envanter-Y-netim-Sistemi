@@ -1,4 +1,4 @@
-# Envanter-Yonetim-Sistemi
+# Stok-Yonetim-Sistemi
 Inventory Management System in C# – Project Report
 1. Project Purpose
 This console-based C# application helps users manage product inventories efficiently. It allows users to add, update, list, and remove products using a simple command-line interface. The project demonstrates fundamental programming concepts and back-end logic as part of the Microsoft Back-End Developer curriculum.
